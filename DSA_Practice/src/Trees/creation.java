@@ -18,7 +18,6 @@ public class creation {
         }
 
         print(root.left);
-
         print(root.right);
 
 
