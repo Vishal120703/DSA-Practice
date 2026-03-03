@@ -82,6 +82,21 @@ public class BasicFunctions {
         if(root1 == null || root2 == null) return false;
         return(root1.data == root2.data && compare(root1.left,root2.left) && compare(root1.right,root2.right) );
     }
+    public static int count(Node root){
+        if(root == null) return 0;
+        return 1+ count(root.left) + count(root.right);
+    }
+    public static boolean balanceTree(Node root){
+        return balance(root,Integer.MAX_VALUE,Integer.MIN_VALUE);
+    }
+    public static boolean balance(Node root , int min, int max){
+        if(root == null) return true;
+        if (root.data <= min || root.data >= max)
+            return false;
+        return(balance(root.left,min,root.data) && balance(root.right,root.data,max) );
+    }
+
+
 
     public static void main(String[] args) {
         Node root = new Node(12);
@@ -92,11 +107,9 @@ public class BasicFunctions {
         root.right.left = new Node(17);
         root.left.left.right = new Node(18);
         root.right.left.left = new Node(19);
-//        System.out.println(height(root));
-//        levelOrder(root);
-//        printInOrder(root);
-//        System.out.println(find(root,14));
-//        System.out.println(compare(root.left,root.right));
-        System.out.println(Diameter(root));
+//        System.out.println(count(root));
+        System.out.println(balanceTree(root));
+
+
     }
 }
